@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         Jack Olney      %
+%   Uncertainty Analysis  %
+% Version 1.0 - 01/12/15  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set document class
+\documentclass[a4paper]{article}
+
+% preamble
+
+% Packages
+\usepackage[hyphens]{url}
+\usepackage{hyperref} % add links to document
+\usepackage{graphicx} % add pictures to document
+\usepackage{pdfpages} % add pdf's to document
+\usepackage{listing} % source code formatting
+\usepackage{fancyhdr} % fancy header on each page
+\usepackage{upgreek} % upright greek letters
+\usepackage[labelfont=bf]{caption} % make 'figure x' bold in figure caption
+\usepackage{authblk} % multiple author package
+\usepackage[noadjust]{cite}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{lscape}
+\usepackage{adjustbox}
+\usepackage{listings} % for code insertion
+\usetikzlibrary{shapes,arrows,automata,calc}
+
+% subcaption package.
+\usepackage[font+=footnotesize,margin=5pt]{subcaption}
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
+
+\topmargin -1.0cm
+\headsep=1.0cm
+\headheight=0.0cm
+\textheight 24.0cm
+\oddsidemargin 0.0cm
+\evensidemargin 0.0cm
+\textwidth 15.9cm
+
+% Main document
+\begin{document}
+
+% header setup
+% \pagestyle{fancy}
+% \lhead{}
+% % \lhead{Olney \textit{et al.}}
+% \rhead{Modelling Support to Analysis of HIV Service Cascade Data}
+
+% maketitle setup
+\title{\textbf{Evaluating Strategies to Improve HIV Care Outcomes in Kenya} \\ Sensitivity analysis around cost}
+
+% authors
+\author[1]{Jack J Olney}
+% \author[1]{Jeffrey W Eaton}
+% \author[1]{Ellen McRobie}
+% \author[1]{Timothy B Hallett}
+
+% % affiliations
+% \affil[1]{Department of Infectious Disease Epidemiology, Imperial College London, United Kingdom}
+
+\date{\today{}}
+
+% call maketitle
+\maketitle{}
+
+\subsection*{Methods}
+\label{Methods}
+
+Here we analyse the sensitivity of the model to variations in the cost of individual units of care. We are interested in understanding how altering different unit costs has an impact on the overall cost of care between 2010 and 2030 in both the status quo (baseline) scenario, and in the presence of interventions.
+
+To begin, we list all individual units of cost used in the model. Note that not all cost elements are always used; for instance, in the status quo scenario (baseline), the only costs that apply to the model are the costs of a `Rapid HIV Test', a `Pre-ART Clinic Appointment', a `Lab-based CD4 Test', and the `Annual ART' cost. The remaining cost elements (those denoted by an $^*$), only apply when a relevant intervention is implemented; for example, if the `HBCT POC-CD4' intervention was implemented, the cost of an `HBCT Visit' and the cost of a `POC CD4 Test' would also apply to the model.
+
+To analyse the sensitivity of the overall cost of care between 2010 and 2030, to variations in the cost of individual components of care, we first define an upper and lower bound for each unit cost used in the model from which we can then sample between. The minimum, or lower bound, is equal to 50\% of the `Initial Cost' (the status quo cost normally used by the model), while the maximum, or upper bound, is equal to 150\% of the `Initial Cost'. Additionally, these unit costs are not constant over time, and are discounted at a rate of 6\% per annum from 2010 onwards. To account for this, all sampled costs also decay at a rate of 6\% per annum.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{| l | l | l | l |}
+        \hline
+        \bf{Unit Cost} & \bf{Initial Cost} & \bf{Minimum} & \bf{Maximum} \\ \hline
+
+        Rapid HIV Test              & \$10.00   & \$5.00    & \$15.00 \\ \hline
+        Pre-ART Clinic Appointment  & \$28.00   & \$14.00   & \$42.00 \\ \hline
+        Lab-based CD4 Test          & \$12.00   & \$6.00    & \$18.00 \\ \hline
+        Annual ART                  & \$367.00  & \$183.50  & \$550.50 \\ \hline
+        HBCT Visit$^*$              & \$8.00    & \$4.00    & \$12.00 \\ \hline
+        Linkage$^*$                 & \$2.61    & \$1.31    & \$3.92 \\ \hline
+        Improved Care$^*$           & \$7.05    & \$3.53    & \$10.58 \\ \hline
+        POC CD4 Test$^*$            & \$42.00   & \$21.00   & \$63.00 \\ \hline
+        Annual Adherence$^*$        & \$33.54   & \$16.77   & \$50.31 \\ \hline
+        Outreach$^*$                & \$19.55   & \$9.78    & \$29.33 \\ \hline
+
+    \end{tabular}
+    \caption{{\bf Costs associated with individual components of care.} Row names with an $^*$ are intervention specific. All costs are in 2013 USD.}
+    \label{Tabl:UnitCosts}
+\end{table}
+
+With the upper and lower bounds defined for each unit cost, we have defined the parameter space from which we can sample. We use a Latin Hypercube sampling (LHS) algorithm from the FME package in R to take one thousand random draws from the parameter space for each scenario.
+
+More specifically, for each intervention, of which there are 12 simulated, we use LHS to draw one thousand parameter sets by randomly sampling between the upper and lower bounds of each relevant unit cost (Note, the size of the parameter space therefore changes dependent upon the intervention being implemented). For each parameter set, we calculate the baseline cost (the total cost of care in the absence of any interventions), then calculate the intervention cost (the total cost of care in the presence of the relevant intervention). We then calculate the additional cost associated with implementing an intervention by taking the intervention cost away from the baseline cost. This is repeated for each of the parameter sets, and for each intervention, until we are left with one thousand results for each of the 12 interventions.
+
+Each of these results was then plotted against the number DALYs averted between 2010 and 2030 for each intervention, respectively. The mean additional cost of care is denoted by the largest point for each intervention, the remaining values represent the results of each parameter set, and these were assigned a low alpha value to increase their transparency and allow a trend to be visualised. We then calculated the variance in cost between each parameter set and the mean for each intervention (the squared difference between the the sampled cost and the mean), and plotted this against the mean cost. The variance for each intervention (the average squared difference between the sampled cost and the mean for all parameter sets), was then calculated and each intervention was ranked in order of increasing variance.
+
+Additionally, we sought to understand the contribution of each unit cost to the sensitivity of total cost observed in figure~1. To explore this, we randomly sampled parameter sets for each intervention (as before), but kept the value of one particular unit cost constant (at its initial value). This allowed the sensitivity of the model to the remaining units to be quantified and the impact of the unit being held constant to be assessed by way of comparison to figure~1. However, as several costs are only applied when a particular intervention is implemented, this analysis could only be conducted for the four unit costs that are relevant in every scenario (those without an $^*$). The results are presented as four sub-figures representing the four unit costs that were held constant.
