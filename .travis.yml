@@ -1,5 +1,5 @@
 before_install:
-- "sudo apt-get update && sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended pgf texlive-adjustbox"
+- "sudo apt-get update && sudo apt-get install texlive-latex-extra"
 script:
 - mkdir ./_build/
 - pdflatex -output-directory _build tex/Hello.tex
