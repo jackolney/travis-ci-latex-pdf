@@ -1,14 +1,14 @@
 before_install:
-- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended"
 script:
-- mkdir ./_build/
-- pdflatex -output-directory ./_build/ tex/Hello.tex
+- mkdir _build
+- pdflatex -output-directory _build tex/Hello.tex
 deploy:
   provider: releases
   api_key:
     secure: qMdS+WTKOBwaY9ZYBLb9a9c7CYdhRl8M89nBDHO46V+qYJot7WALMfyP15A6jQKWnTIYvDC2KXHq0ku6Hg4qS4cT05gHQCeF0jpEjslJ6Nd7rT23K1o8/8skZLOA3k80Aybn27ofP9lSo9/cAYeSvH3x/iN3MNxWrTMTMd7hG6H5qAsuPqfs0obhZ+fXnoIvUveZIKAuwWe7iTKObhG9NCPyEFRjVmu3O/okDXGfzvRYyvq9zMqpA74l0BJ0q+pt5SvHsBL5LZ+euL/JI5xyELjVU8U7cbHcl2Ucp5k5cykz/7HgQVMseDuaJN/Ds63ucPzd6DZCYoprRZehWTZ49zSAR/TeVLI2zpQDtTzUxWPsi1jR2RXFCP9Cp/pRID/n7nfXj8WZRPGLja/L2H9bKuH+Rg/RNWT3mZHePNHwINGuRnU6o6PDyO4J56R/Y56+F4410JBSfQj3s/99JwqPXvZzUXnq31d5dPAjq1edwtwxfkuIbpMAvU0AyX9itcNtv5a1sWVD5RyUmflXK607IXj2hVjHtInCSyE4WrzmgZrGsKuq8O0mmHD1B+mBsvhAGm6rLB5cobVhhei+dkiFpo+8y2uNKpT54WA4AcUhNjuvbUuCBK9AxKJa2UrBkkOXKwptFXHxPnKbt7qv29WPG0odc1FgstqymybId0n2Tt0=
   file:
-  - ./_build/Hello.pdf
+  - _build/Hello.pdf
   skip_cleanup: true
   on:
     tags: true
