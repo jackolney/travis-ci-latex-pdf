@@ -1,7 +1,7 @@
 before_install:
-- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-pictures pgf texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended"
+- "sudo apt-get update && sudo apt-get install --no-install-recommends pgf texlive-latex-extra texlive-pictures pgf texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended"
 script:
-- mkdir _build
+- "mkdir _build"
 - pdflatex -output-directory _build tex/Hello.tex
 deploy:
   provider: releases
