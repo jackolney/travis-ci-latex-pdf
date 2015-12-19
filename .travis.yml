@@ -1,8 +1,7 @@
 before_install:
-- "sudo apt-get update && sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended pgf"
-- "sudo apt-get install chktex"
+- "sudo apt-get update && sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended pgf texlive-adjustbox"
 script:
-- mkdir _build
+- mkdir ./_build/
 - pdflatex -output-directory _build tex/Hello.tex
 deploy:
   provider: releases
