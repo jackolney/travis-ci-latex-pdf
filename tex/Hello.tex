@@ -26,10 +26,6 @@
 \usepackage{listings} % for code insertion
 \usetikzlibrary{shapes,arrows,automata,calc}
 
-% subcaption package.
-\usepackage[font+=footnotesize,margin=5pt]{subcaption}
-\renewcommand{\thesubfigure}{\Alph{subfigure}}
-
 \topmargin -1.0cm
 \headsep=1.0cm
 \headheight=0.0cm
@@ -102,3 +98,5 @@ More specifically, for each intervention, of which there are 12 simulated, we us
 Each of these results was then plotted against the number DALYs averted between 2010 and 2030 for each intervention, respectively. The mean additional cost of care is denoted by the largest point for each intervention, the remaining values represent the results of each parameter set, and these were assigned a low alpha value to increase their transparency and allow a trend to be visualised. We then calculated the variance in cost between each parameter set and the mean for each intervention (the squared difference between the the sampled cost and the mean), and plotted this against the mean cost. The variance for each intervention (the average squared difference between the sampled cost and the mean for all parameter sets), was then calculated and each intervention was ranked in order of increasing variance.
 
 Additionally, we sought to understand the contribution of each unit cost to the sensitivity of total cost observed in figure~1. To explore this, we randomly sampled parameter sets for each intervention (as before), but kept the value of one particular unit cost constant (at its initial value). This allowed the sensitivity of the model to the remaining units to be quantified and the impact of the unit being held constant to be assessed by way of comparison to figure~1. However, as several costs are only applied when a particular intervention is implemented, this analysis could only be conducted for the four unit costs that are relevant in every scenario (those without an $^*$). The results are presented as four sub-figures representing the four unit costs that were held constant.
+
+\end{document}
