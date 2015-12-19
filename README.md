@@ -1,6 +1,6 @@
 # TeX + Git + Continuous Integration + Dropbox
 
-[![Build Status](https://travis-ci.org/jackolney/travis-ci-latex-pdf.svg?branch=draft-2)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
+[![Build Status](https://api.travis-ci.org/jackolney/travis-ci-latex-pdf.svg?branch=draft-3)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
 
 Follow this post to get more detailed workflow:
 
