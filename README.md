@@ -1,6 +1,6 @@
 ### LaTeX + Git + Travis -> .pdf
 
-[![Build Status](https://travis-ci.org/jackolney/travis-ci-latex-pdf.svg?branch=master)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
+[![Build Status](https://api.travis-ci.org/jackolney/travis-ci-latex-pdf.svg)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
 
 Write LaTex, push to git, integrate with Travis, release a pdf.
 
