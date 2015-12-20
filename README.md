@@ -1,9 +1,7 @@
-# TeX + Git + Continuous Integration + Dropbox
+### LaTeX + Git + Travis -> .pdf
 
-[![Build Status](https://api.travis-ci.org/jackolney/travis-ci-latex-pdf.svg?branch=draft-3)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
+[![Build Status](https://travis-ci.org/jackolney/travis-ci-latex-pdf.svg?branch=master)](https://travis-ci.org/jackolney/travis-ci-latex-pdf)
 
-Follow this post to get more detailed workflow:
+Write LaTex, push to git, integrate with Travis, release a pdf.
 
-Blog post: [Document building & versioning with TeX document, Git, Continuous Integration & Dropbox](https://harshjv.github.io/blog/document-building-versioning-with-tex-document-git-continuous-integration-dropbox/)
-
-![Workflow](https://harshjv.github.io/assets/images/posts/document-building-versioning-with-tex-document-git-continuous-integration-dropbox/workflow.png "Workflow")
+See [blog post](https://harshjv.github.io/blog/document-building-versioning-with-tex-document-git-continuous-integration-dropbox/) for further details.
