@@ -11,4 +11,4 @@ deploy:
   - ./_build/Hello.pdf
   skip_cleanup: true
   on:
-    tags: true
+    branch: master
