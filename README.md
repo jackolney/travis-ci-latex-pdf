@@ -6,7 +6,7 @@ Write LaTeX, push to git, integrate with Travis, release a pdf.
 
 # Setup
 
-* Go to [Travis CI](https://travis-ci.org) and enable the repository.
+* Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
 * Copy the `.travis.yml` file and specify the right tex file there, as well as the pdf that you want to have.
 * Commit and push to check that the file builds.
 
@@ -15,6 +15,7 @@ Write LaTeX, push to git, integrate with Travis, release a pdf.
 * (Windows) [Download ruby](https://rubyinstaller.org/downloads/) and at at end of the installation make sure to install MSYS including development kit.
 * Run `gem install travis --no-rdoc --no-ri` to install the Travis Command-line Tool.
 * Remove the `deploy` section in the `.travis.yml` or use `--force` in the next command.
+* Run `travis setup releases`.
 * Replace everything below your encryped api key with
 ```
   file:
