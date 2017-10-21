@@ -2,7 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/PHPirates/travis-ci-latex-pdf.svg)](https://travis-ci.org/PHPirates/travis-ci-latex-pdf)
 
-Write LaTex, push to git, integrate with Travis, release a pdf.
+Write LaTeX, push to git, integrate with Travis, release a pdf.
 
 # Setup
 
