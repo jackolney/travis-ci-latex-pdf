@@ -1,3 +1,5 @@
+notification:
+    email: false
 before_install:
 - sudo apt-get update
 - sudo apt-get install texlive-latex-extra
@@ -15,6 +17,3 @@ deploy:
   on:
     tags: true
     branch: master
-
-notification:
-    email: false
