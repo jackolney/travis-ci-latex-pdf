@@ -3,6 +3,10 @@ notification:
 before_install:
 - sudo apt-get update
 - sudo apt-get install texlive-latex-extra
+- sudo apt-get install xzdec
+- sudo mkdir /home/travis/texmf
+- sudo tlmgr init-usertree
+- sudo tlmgr install stmaryrd
 script:
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins, because when the LaTeX doesn't compile pdflatex just hangs instead of quitting.

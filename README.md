@@ -15,7 +15,7 @@ Write LaTeX, push to git, integrate with Travis, release a pdf.
 * (Windows) [Download ruby](https://rubyinstaller.org/downloads/) and at at end of the installation make sure to install MSYS including development kit.
 * Run `gem install travis --no-rdoc --no-ri` to install the Travis Command-line Tool.
 * Remove the `deploy` section in the `.travis.yml` or use `--force` in the next command.
-* Go to the directory of your repository and run `travis setup releases`. Specify your GitHub credentials.
+* Go to the directory of your repository and run `travis setup releases`. Specify your GitHub credentials, and fill in anything for File to Upload. If it hangs in Git Bash, try to use Command Prompt.
 * Replace everything below your encryped api key with
 ```
   file:
