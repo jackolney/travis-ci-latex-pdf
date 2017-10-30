@@ -23,6 +23,7 @@ fi
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 tlmgr install   \
+  texlive-latex-base      \
   amsfonts      \
   stmaryrd      \
   amsmath
