@@ -7,7 +7,7 @@ Write LaTeX, push to git, integrate with Travis, release a pdf.
 # Setup
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
-* Copy the `.travis.yml` file and specify the right tex file there, as well as the pdf that you want to have.
+* Copy the files `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
 * Optional: commit and push to check that the file builds.
 
 ## To automatically deploy pdfs to GitHub release
