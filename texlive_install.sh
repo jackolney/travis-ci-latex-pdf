@@ -21,9 +21,12 @@ if ! command -v texlua > /dev/null; then
   cd ..
 fi
 
+# install pdflatex
+sudo apt-get install texlive-base texlive-latex-base
+
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
+# texlive-latex-base is needed to run pdflatex
 tlmgr install   \
-  texlive-latex-base      \
   amsfonts      \
   stmaryrd      \
   amsmath
