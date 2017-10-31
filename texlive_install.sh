@@ -25,6 +25,12 @@ fi
 # Needed for any use of texlua even if not testing LuaTeX
 tlmgr install luatex
 
+# Needed for TeX Live 2017
+tlmgr install xkeyval
+
+# A kind of minimum set of packages needed
+#tlmgr install collection-latex
+
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # texlive-latex-base is needed to run pdflatex
 tlmgr install   \
