@@ -5,8 +5,29 @@
 
 % Preamble
 \documentclass{exam}
-% Test requiring a non standard package
-\usepackage{stmaryrd} % $\lightning$
+% Test requiring some non-standard packages
+
+\usepackage[dutch]{babel} % May be necessary to delete auxiliary files after changing.
+\usepackage[fleqn]{amsmath} % left align equations option
+\usepackage{amsthm} % proof environments
+\usepackage{amssymb} % some symbols like probability P, or real number R
+\usepackage{mathtools} % improvement over amsmath, like \coloneqq 
+\usepackage{enumerate} % numbered list
+\usepackage{thmtools} % define custom to prove environments
+\usepackage{stmaryrd} % \lightning
+
+\usepackage{xcolor} % colors
+\usepackage{pdfpages} % to include external pdfs
+\usepackage{centernot} % \centernot \implies looks correct
+\usepackage{tikz} % Used for drawings
+\usepackage{imakeidx} % Used for index
+\usepackage[makeroom]{cancel} % to draw a diagonal line through formulas
+\usepackage{hyperref} % should make index clickable
+\usepackage{bookmark} % Used for pdf bookmarks, needs to be loaded AFTER hyperref
+\usepackage{pgfplots} % Drawings!
+\usepackage{bm} % bold math, \bm{}
+\usepackage{listings} % to include code with env. lstlisting
+\usepackage{graphicx} % to use \includegraphics
 
 
 % Document
@@ -14,6 +35,6 @@
 
     Hello!
     This is a new release $\lightning$.
-    \input{../src/chapter1.tex}
+    \input{chapter1}
 
 \end{document}

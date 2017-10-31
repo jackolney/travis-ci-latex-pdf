@@ -6,6 +6,8 @@ cache:
   directories:
     - /tmp/texlive
     - $HOME/.texlive
+# Change working directory so including files will work
+before_script: cd ./src/
 script:
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins, because when the LaTeX doesn't compile pdflatex just hangs instead of quitting.

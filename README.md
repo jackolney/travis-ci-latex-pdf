@@ -26,7 +26,6 @@ Write LaTeX, push to git, integrate with Travis, release a pdf.
     branch: master
 ```
 * If you are ready to release, just tag and push.
-* Currently if you want to include other files, do so with `../src/filetoinclude.tex` if the file is in the same directory. Note the extension at the end, it is necessary. Also don't use capital letters. The `../src/` is because this will go up one directory and down one instead of trying to find the file in the directory from where the `pdflatex` command is executed. I'd consider this buggy behavior of the `-output-directory` option.
 * If you want to build private project, you could try SemaphoreCI, currently they give 100 private builds per month for free. If you do, it would be great if you could report back!
 
 Adapted from [harshjv's blog](https://harshjv.github.io/blog/setup-latex-pdf-build-using-travis-ci/), and thanks to [jackolney](https://github.com/jackolney/travis-ci-latex-pdf) for all his attempts to put it into practice.
