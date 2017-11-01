@@ -29,15 +29,35 @@ tlmgr install luatex
 tlmgr install xkeyval
 
 # A kind of minimum set of packages needed
-#tlmgr install collection-latex
+tlmgr install collection-latex
 
+# Install babel languages
+tlmgr install collection-langeuropean
+
+# Index of packages: http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
-# texlive-latex-base is needed to run pdflatex
+# pgf includes tikz
 tlmgr install   \
   exam          \
-  amsfonts      \
+  amsmath       \
+  amsthm        \
+  amssymb       \
+  mathtools     \
+  enumerate     \
+  thmtools      \
   stmaryrd      \
-  amsmath
+  xcolor        \
+  pdfpages      \
+  centernot     \
+  pgf           \
+  cancel        \
+  hyperref      \
+  bookmark      \
+  pgfplots      \
+  bm            \
+  listings      \
+  graphicx      \
+  imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
