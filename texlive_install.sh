@@ -57,6 +57,10 @@ tlmgr install   \
   bm            \
   listings      \
   graphicx      \
+  scalerel      \
+  stackengine   \
+  etoolbox      \
+  listofitems   \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)
