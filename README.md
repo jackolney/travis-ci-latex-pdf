@@ -46,6 +46,7 @@ Installs a minimal TeX Live installation on Travis, and compiles with pdflatex.
 ```markdown
 [![Build Status](https://api.travis-ci.org/username/reponame.svg)](https://travis-ci.org/username/reponame)
 ```
+* Probably you want to edit settings on Travis to not build both on pull request and branch updates, and cancel running jobs if new ones are pushed.
 
 #### Notes
 * If you want to build a private project, if you are a student you can use [travis-ci.com](https://travis-ci.com). Beware that you need a token to include the build status image in your readme, get the correct url by clicking on the build status on travis-ci.com.
