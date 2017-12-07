@@ -61,6 +61,15 @@ tlmgr install   \
   stackengine   \
   etoolbox      \
   listofitems   \
+  marvosym      \
+  amsfonts      \
+  opensans      \
+  slantsc       \
+  fancyhdr      \
+  ulem          \
+  algorithms    \
+  algorithmicx  \
+  float         \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)

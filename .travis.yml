@@ -12,6 +12,8 @@ script:
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins, because when the LaTeX doesn't compile pdflatex just hangs instead of quitting.
 - travis_wait 3 pdflatex -output-directory _build ./main.tex
+# Compile twice to fix possible references
+- travis_wait 3 pdflatex -output-directory _build ./main.tex
 deploy:
   provider: releases
   api_key:
