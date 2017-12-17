@@ -70,6 +70,8 @@ tlmgr install   \
   algorithms    \
   algorithmicx  \
   float         \
+  booktabs      \
+  enumitem      \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)
