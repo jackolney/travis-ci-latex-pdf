@@ -72,6 +72,7 @@ tlmgr install   \
   float         \
   booktabs      \
   enumitem      \
+  polynom       \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)
