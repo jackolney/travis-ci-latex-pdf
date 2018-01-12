@@ -5,20 +5,21 @@
 Write LaTeX, push to git, let Travis automatically try to build your file and release a pdf automatically to GitHub releases when the commit was tagged.
 
 Installs a minimal TeX Live installation on Travis, and compiles with pdflatex.
+This repo contains:
+- The TeX Live install script `texlive_install.sh` including profile `texlive/texlive.profile` (specifies for example the TeX Live scheme)
+- A Travis configuration file
+- Demonstration LaTeX files in `src/`
 
 # Features
 
-* Add the packages you use to the install script.
+* Add the extra packages you use which are not included in the TeX Live basic scheme to the install script.
+* The currently used package index is [here](http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/).
 * Same for other document classes.
-* File inclusion.
+* Supports file inclusion.
 * Caches TeX Live and packages, also speeds up build time.
-* Works with BiBTeX.
+* Works with (at least) BiBTeX.
 
-# To do
-* Table of contents
-* Index
-
-# Setup
+# How to use continuous integration for your LaTeX?
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
 * Copy the files `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
@@ -53,5 +54,9 @@ Installs a minimal TeX Live installation on Travis, and compiles with pdflatex.
 * If you want to build a private project, if you are a student you can use [travis-ci.com](https://travis-ci.com). Beware that you need a token to include the build status image in your readme, get the correct url by clicking on the build status on travis-ci.com.
 * Otherwise you could try SemaphoreCI, currently they give 100 private builds per month for free. If you do, it would be great if you could report back!
 
-Adapted from [harshjv's blog](https://harshjv.github.io/blog/setup-latex-pdf-build-using-travis-ci/), and thanks to [jackolney](https://github.com/jackolney/travis-ci-latex-pdf) for all his attempts to put it into practice.
+I also put some of these instructions on the [TeX Stackexchange](https://tex.stackexchange.com/questions/398830/how-to-build-my-latex-automatically-with-pdflatex-using-travis-ci/398831#398831).
+
+In the end the install script was completely rewritten based on the [LaTeX3 build file](https://github.com/latex3/latex3/blob/master/support/texlive.sh).
+
+Some original thoughts from [harshjv's blog](https://harshjv.github.io/blog/setup-latex-pdf-build-using-travis-ci/), and thanks to [jackolney](https://github.com/jackolney/travis-ci-latex-pdf) for all his attempts to put it into practice.
 Also see harshjv's original [blog post](https://harshjv.github.io/blog/document-building-versioning-with-tex-document-git-continuous-integration-dropbox/).
