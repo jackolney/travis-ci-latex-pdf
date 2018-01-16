@@ -75,6 +75,7 @@ tlmgr install   \
   polynom       \
   fancyvrb      \
   makecmds      \
+  multirow      \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)

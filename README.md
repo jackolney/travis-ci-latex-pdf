@@ -22,7 +22,21 @@ This repo contains:
 # How to use continuous integration for your LaTeX?
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
-* Copy the files `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
+* You could copy the files `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
+* Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just copy `.travis.yml` and replace
+```yaml
+install:
+ - source ./texlive_install.sh
+```
+with
+```yaml
+install:
+  - mkdir ../texlive/
+  - curl https://raw.githubusercontent.com/PHPirates/travis-ci-latex-pdf/master/texlive/texlive.profile > ../texlive/texlive.profile
+  - curl https://raw.githubusercontent.com/PHPirates/travis-ci-latex-pdf/master/texlive_install.sh > ./texlive_install.sh
+  - source ./texlive_install.sh
+```
+* Optional: you could fork this repo so you can maintain your own build files with the right packages.
 * Optional: commit and push to check that the file builds.
 
 ## To automatically deploy pdfs to GitHub release
