@@ -5,15 +5,19 @@ install:
  # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
  # adapted using
  # https://conda.io/docs/user-guide/tasks/use-conda-with-travis-ci.html
- - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
- - bash miniconda.sh -b -p $HOME/miniconda -f
- - export PATH="$HOME/miniconda/bin:$PATH"
- # From tectonic docs
- # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
- - conda config --add channels conda-forge
- - conda config --set always_yes yes
- - conda update --all
- - conda install tectonic
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - if ! command -v conda > /dev/null; then
+      # Obtain Miniconda
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+      bash miniconda.sh -b -p $HOME/miniconda
+      # Obtain tectonic
+       # From tectonic docs
+       # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
+      conda config --add channels conda-forge
+      conda config --set always_yes yes
+      conda update --all
+      conda install tectonic
+    fi
  - conda info -a
 cache:
   directories:
