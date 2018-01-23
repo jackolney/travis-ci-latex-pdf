@@ -2,15 +2,36 @@
 
 [![Build Status](https://api.travis-ci.org/PHPirates/travis-ci-latex-pdf.svg)](https://travis-ci.org/PHPirates/travis-ci-latex-pdf)
 
-Write LaTeX, push to git, let Travis automatically try to build your file and release a pdf automatically to GitHub releases when the commit was tagged.
+Write LaTeX, push to git, let Travis automatically build your file and release a pdf automatically to GitHub releases when the commit was tagged.
 
-Installs a minimal TeX Live installation on Travis, and compiles with pdflatex.
+# Choose your tools: Miniconda with Tectonic vs TeX Live with pdflatex
+
+If you have no idea, Tectonic is easier since you do not need to keep a list of packages and specify the number of compiles manually.
+
+[Tectonic](https://tectonic-typesetting.github.io) is a LaTeX engine which has some nice features like
+* automatically loops TeX and BibTeX as needed, and only as much as needed
+* automatically downloads LaTeX packages (just like MikTeX, contrary to TeX Live)
+
+pdflatex does not have these features, but is easy to use with MikTeX on Windows while Tectonic is not available for Windows yet. The original build instructions used pdflatex and TeX Live, they are [below](#pdflatex).
+
+## Instructions for building with Tectonic
+
+* Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
+* Copy `.travis.yml` and specify the right tex and pdf file in the `.travis.yml`. Possibly you also need to change the folder in `before_script` if not using `src/`.
+* For deploying to GitHub releases, see the notes [below](#deploy).
+
+## <a name="pdflatex">Instructions for building with pdflatex and TeX Live</a>
+
+If for some reason you prefer the pdflatex engine with the TeX Live distribution, read on.
+
+This method installs an almost minimal TeX Live installation on Travis, and compiles with pdflatex.
 This repo contains:
 - The TeX Live install script `texlive_install.sh` including profile `texlive/texlive.profile` (specifies for example the TeX Live scheme)
 - A Travis configuration file
 - Demonstration LaTeX files in `src/`
+- Besides the list of packages that get installed in `texlive_install.sh`, you can see a list of packages in `main.tex` which you can all use with this install.
 
-# Features
+### Features
 
 * Add the extra packages you use which are not included in the TeX Live basic scheme to the install script.
 * The currently used package index is [here](http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/).
@@ -19,11 +40,14 @@ This repo contains:
 * Caches TeX Live and packages, also speeds up build time.
 * Works with (at least) BiBTeX.
 
-# How to use continuous integration for your LaTeX?
+
+
+### How to use continuous integration for your LaTeX?
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
-* You could copy the files `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
-* Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just copy `.travis.yml` and replace
+* Copy the files `.travis.yml-tl-pdflatex` (rename it to `.travis.yml`), `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
+* Possibly you also need to change the folder in `before_script` if not using `src/`.
+* Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just use `.travis.yml` and replace
 ```yaml
 install:
  - source ./texlive_install.sh
@@ -39,7 +63,7 @@ install:
 * Optional: you could fork this repo so you can maintain your own build files with the right packages.
 * Optional: commit and push to check that the file builds.
 
-## To automatically deploy pdfs to GitHub release
+## <a name="deploy">To automatically deploy pdfs to GitHub release</a>
 ### First time setup
 * We will generate a GitHub OAuth key so Travis can push to your releases, with the important difference (compared to just gettting it via GitHub settings) that it's encryped so you can push it safely.
 * (Windows) [Download ruby](https://rubyinstaller.org/downloads/) and at at end of the installation make sure to install MSYS including development kit.
@@ -64,10 +88,10 @@ install:
 * Probably you want to edit settings on Travis to not build both on pull request and branch updates, and cancel running jobs if new ones are pushed.
 
 #### Notes
-* Besides the list of packages that get installed in `texlive_install.sh`, you can see a list of packages in `main.tex` which you can all use with this install.
 * If you want to build a private project, if you are a student you can use [travis-ci.com](https://travis-ci.com). Beware that you need a token to include the build status image in your readme, get the correct url by clicking on the build status on travis-ci.com.
 * Otherwise you could try SemaphoreCI, currently they give 100 private builds per month for free. If you do, it would be great if you could report back!
 
+##### References for original setup with pdflatex and TeX Live
 I also put some of these instructions on the [TeX Stackexchange](https://tex.stackexchange.com/questions/398830/how-to-build-my-latex-automatically-with-pdflatex-using-travis-ci/398831#398831).
 
 In the end the install script was completely rewritten based on the [LaTeX3 build file](https://github.com/latex3/latex3/blob/master/support/texlive.sh).
