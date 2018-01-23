@@ -3,14 +3,15 @@ notifications:
 install:
  # Silent install from conda docs
  # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
- - wget http://repo.continuum.io/miniconda/Miniconda3-3.7.0-Linux-x86_64.sh -O ~/miniconda.sh
- - bash ~/miniconda.sh -b -p $HOME/miniconda
+ - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+ - bash miniconda.sh -b -p $HOME/miniconda -f
  - export PATH="$HOME/miniconda/bin:$PATH"
  # From tectonic docs
  # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
  - conda config --add channels conda-forge
  - conda update --all
  - conda install tectonic
+ - conda info -a
 cache:
   directories:
     - $HOME/miniconda
