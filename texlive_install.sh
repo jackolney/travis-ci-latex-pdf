@@ -76,6 +76,7 @@ tlmgr install   \
   fancyvrb      \
   makecmds      \
   multirow      \
+  chngcntr      \
   imakeidx
 
 # Keep no backups (not required, simply makes cache bigger)
