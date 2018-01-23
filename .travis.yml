@@ -1,7 +1,6 @@
 notifications:
   email: false
 install:
-  - sudo apt-get update
   # Silent install from conda docs
   # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
   # adapted using
@@ -15,12 +14,12 @@ install:
   # From tectonic docs
   # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
   - if ! command -v conda > /dev/null; then
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-      bash miniconda.sh -b -p $HOME/miniconda
-      conda config --add channels conda-forge
-      conda config --set always_yes yes
-      conda update --all
-      conda install tectonic
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      bash miniconda.sh -b -p $HOME/miniconda;
+      conda config --add channels conda-forge;
+      conda config --set always_yes yes;
+      conda update --all;
+      conda install tectonic;
     fi
   - conda info -a
 cache:
