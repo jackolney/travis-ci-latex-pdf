@@ -4,17 +4,61 @@
 
 Write LaTeX, push to git, let Travis automatically build your file and release a pdf automatically to GitHub releases when the commit was tagged.
 
-# Choose your tools: Miniconda with Tectonic vs TeX Live with pdflatex
+# Choose your tools
 
-If you have no idea, Tectonic is easier since you do not need to keep a list of packages and specify the number of compiles manually.
+These were written with preference for the pdflatex engine, if you don't have that some pros and cons are irrelevant.
 
-[Tectonic](https://tectonic-typesetting.github.io) is a LaTeX engine which has some nice features like
+## 1. Miniconda with Tectonic engine
+
+Thanks to [Dan Foreman-Mackey](http://dfm.io/posts/travis-latex/) for writing about Tectonic.
+
+#### Pro:
 * automatically loops TeX and BibTeX as needed, and only as much as needed
-* automatically downloads LaTeX packages (just like MikTeX, contrary to TeX Live)
+* automatically downloads LaTeX packages which are needed
 
-pdflatex does not have these features, but is easy to use with MikTeX on Windows while Tectonic is not available for Windows yet. The original build instructions used pdflatex and TeX Live, they are [below](#pdflatex).
+#### Con:
+* Build times are slightly longer than with option 2.
+* Does not use pdflatex to compile, but [Tectonic](https://tectonic-typesetting.github.io) which is a fork of XeTeX (thanks to [ShreevatsaR](https://tex.stackexchange.com/users/48/shreevatsar) for pointing this out). 
 
-## Instructions for building with Tectonic
+Build time MWE: 3-4 minutes
+
+Want this? Instructions [below](#tectonic).
+
+
+## 2. TeX Live with pdflatex
+
+Thanks to [Joseph Wright](https://tex.stackexchange.com/users/73/joseph-wright) who pointed out that they use something based on this setup for LaTeX3 development.
+
+#### Pro:
+* Uses pdflatex to compile.
+* Fast, because of caching.
+
+#### Con:
+* You need to specify by hand which packages you need, and some may not be available in the package repository or under different names or with other packages as requirements.
+* You need to specify by hand how much times to compile to make sure references and bibtex references work.
+
+Build time MWE: 1-2 minutes
+
+Want this? Instructions [below](#pdflatex).
+
+## 3. TeX Live and pdflatex via tinytex with R.
+
+Thanks to [Hugh](https://tex.stackexchange.com/users/18414/hugh) for pointing out this option.
+
+#### Pro:
+
+* Uses pdflatex.
+* Automatically installs packages needed
+
+#### Con:
+* You need to specify how much times to compile.
+* Build time is very long.
+
+Build time MWE: 5-8 minutes
+
+Want this? Instructions [below](#tinytex).
+
+## <a name="tectonic">Instructions for building with Tectonic</a>
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
 * Copy `.travis.yml` and specify the right tex and pdf file in the `.travis.yml`. Possibly you also need to change the folder in `before_script` if not using `src/`.
@@ -62,6 +106,12 @@ install:
 ```
 * Optional: you could fork this repo so you can maintain your own build files with the right packages.
 * Optional: commit and push to check that the file builds.
+
+## <a name="tinytex">Instructions for building with TeX Live and pdflatex via tinytex with R</a>
+
+* Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
+* Copy `.travis.yml-tinytex`, rename to `.travis.yml` and specify the right tex file there.
+* For deploying to GitHub releases, see the notes [below](#deploy).
 
 ## <a name="deploy">To automatically deploy pdfs to GitHub release</a>
 ### First time setup
