@@ -89,8 +89,8 @@ This repo contains:
 ### How to use continuous integration for your LaTeX?
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
-* Copy the files `.travis.yml-tl-pdflatex` (rename it to `.travis.yml`), `texlive_install.sh` and `texlive/texlive.profile` and specify the right tex file in the `.travis.yml`.
-* Possibly you also need to change the folder in `before_script` if not using `src/`.
+* Copy the files in the folder `2-texlive-pdflatex` to your repo, so `.travis.yml`, `texlive_install.sh` and `texlive/texlive.profile`.
+* Specify the right tex file in the `.travis.yml`. Possibly you also need to change the folder in `before_script` if not using `src/`.
 * Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just use `.travis.yml` and replace
 ```yaml
 install:
@@ -110,7 +110,9 @@ install:
 ## <a name="tinytex">Instructions for building with TeX Live and pdflatex via tinytex with R</a>
 
 * Go to [Travis CI](https://travis-ci.org) and enable the repository which contains a LaTeX file that you want to build.
-* Copy `.travis.yml-tinytex`, rename to `.travis.yml` and specify the right tex file there.
+* Copy the files in the folder `3-tinytex` to your repo, so `.travis.yml` and `install_texlive.R`.
+* Specify the right tex file in `.travis.yml`.
+* Commit and push.
 * For deploying to GitHub releases, see the notes [below](#deploy).
 
 ## <a name="deploy">To automatically deploy pdfs to GitHub release</a>
