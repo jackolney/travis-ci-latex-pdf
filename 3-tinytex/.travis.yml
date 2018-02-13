@@ -1,0 +1,10 @@
+language: r
+sudo: true
+latex: false
+pandoc: false
+warnings_are_errors: false
+
+install: echo "Nothing occurs at installation, only script"
+script:
+- Rscript install_texlive.R
+- Rscript -e 'tinytex::pdflatex("src/main.tex", bib_engine = "biber")'
