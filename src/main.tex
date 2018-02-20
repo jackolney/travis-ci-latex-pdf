@@ -45,16 +45,20 @@
 \usepackage[noend]{algpseudocode} % Layout for algorithmicx package
 \usepackage{chngcntr} % Customise table/figure counters
 
+\makeindex
+
 % Document
 \begin{document}
 
     Hello!
-    This is a new release $\lightning$.
+    This is a new release $\lightning$. \index{lightning}
     \input{chapter1}
 
     They said~\cite{book1}.
 
     \bibliography{books}
     \bibliographystyle{plain}
+
+    \printindex
 
 \end{document}
