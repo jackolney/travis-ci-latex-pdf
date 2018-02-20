@@ -28,7 +28,8 @@ cache:
     - $HOME/.cache/Tectonic
 script: # Change working directory each time so including files will work. Change back so the pdfs can be found for deployment. This way, building multiple files goes well.
  - cd ./src/
- - tectonic ./main.tex --print
+ - tectonic ./main.tex -shell-escape --print
+ - makeindex
  - cd ../
 deploy:
   provider: releases
