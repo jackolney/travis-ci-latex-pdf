@@ -2,7 +2,7 @@ notifications:
   email: false
 before_install:
   # Install makeindex, if you do not use an index you can remove this (also remove the -shell-escape option on tectonic then).
-  - sudo apt-get install texlive-binaries
+#  - sudo apt-get install texlive-binaries
 install:
   # Silent install from conda docs
   # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
@@ -31,7 +31,10 @@ cache:
     - $HOME/.cache/Tectonic
 script: # Change working directory each time so including files will work. Change back so the pdfs can be found for deployment. This way, building multiple files goes well.
  - cd ./src/
- - tectonic ./main.tex -shell-escape --print
+ # Tectonic does not include makeindex, so that needs to be done manually.
+ - tectonic ./main.tex
+ - makeindex ./main.tex
+ - tectonic ./main.tex --print
  - makeindex
  - cd ../
 deploy:
