@@ -1,8 +1,8 @@
 notifications:
   email: false
 before_install:
-  # Install makeindex, if you do not use an index you can remove this (also remove the -shell-escape option on tectonic then).
-#  - sudo apt-get install texlive-binaries
+  # Install makeindex, if you do not use an index you can remove this (also remove the extra makeindex call).
+  - sudo apt-get install texlive-binaries
 install:
   # Silent install from conda docs
   # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
