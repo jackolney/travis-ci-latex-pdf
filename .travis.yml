@@ -33,7 +33,7 @@ script: # Change working directory each time so including files will work. Chang
  - cd ./src/
  # Tectonic does not include makeindex, so that needs to be done manually.
  - tectonic ./main.tex
- - makeindex ./main.tex
+ - makeindex ./main.idx
  - tectonic ./main.tex --print
  - makeindex
  - cd ../
