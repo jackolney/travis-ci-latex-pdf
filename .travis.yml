@@ -35,7 +35,6 @@ script: # Change working directory each time so including files will work. Chang
  - tectonic ./main.tex
  - makeindex ./main.idx
  - tectonic ./main.tex --print
- - makeindex
  - cd ../
 deploy:
   provider: releases
