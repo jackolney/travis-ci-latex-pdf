@@ -17,10 +17,9 @@ Thanks to [Dan Foreman-Mackey](http://dfm.io/posts/travis-latex/) for writing ab
 * automatically downloads LaTeX packages which are needed
 
 #### Con:
-* Build times are slightly longer than with option 2.
-* Does not use pdflatex to compile, but [Tectonic](https://tectonic-typesetting.github.io) which is a fork of XeTeX (thanks to [ShreevatsaR](https://tex.stackexchange.com/users/48/shreevatsar) for pointing this out). 
+* It's not really a disadvantage in general, but it can be: it does not use pdflatex to compile, but [Tectonic](https://tectonic-typesetting.github.io) which is a fork of XeTeX (thanks to [ShreevatsaR](https://tex.stackexchange.com/users/48/shreevatsar) for pointing this out). 
 
-Build time MWE: 3-4 minutes
+Build time example file: 1-2 minutes
 
 Want this? Instructions [below](#tectonic).
 
@@ -37,7 +36,7 @@ Thanks to [Joseph Wright](https://tex.stackexchange.com/users/73/joseph-wright) 
 * You need to specify by hand which packages you need, and some may not be available in the package repository or under different names or with other packages as requirements.
 * You need to specify by hand how much times to compile to make sure references and bibtex references work.
 
-Build time MWE: 1-2 minutes
+Build time example file: 1-2 minutes
 
 Want this? Instructions [below](#pdflatex).
 
@@ -54,7 +53,7 @@ Thanks to [Hugh](https://tex.stackexchange.com/users/18414/hugh) for pointing ou
 * You need to specify how much times to compile.
 * Build time is very long.
 
-Build time MWE: 5-8 minutes
+Build time example file: 5-8 minutes
 
 Want this? Instructions [below](#tinytex).
 
