@@ -1,0 +1,65 @@
+%%
+%% Author: s156757
+%% 21-10-2017
+%%
+
+% Preamble
+\documentclass{exam}
+% Test requiring some non-standard packages
+
+\usepackage[dutch]{babel} % May be necessary to delete auxiliary files after changing.
+\usepackage[fleqn]{amsmath} % left align equations option
+\usepackage{amsthm} % proof environments
+\usepackage{amssymb} % some symbols like probability P, or real number R
+\usepackage{mathtools} % improvement over amsmath, like \coloneqq 
+\usepackage{enumerate} % numbered list
+\usepackage{enumitem} % Provides [resume] option for enumerate
+\usepackage{thmtools} % define custom to prove environments
+\usepackage{stmaryrd} % \lightning
+
+\usepackage{xcolor} % colors
+\usepackage{pdfpages} % to include external pdfs
+\usepackage{centernot} % \centernot \implies looks correct
+\usepackage{tikz} % Used for drawings
+\usepackage{imakeidx} % Used for index
+\usepackage[makeroom]{cancel} % to draw a diagonal line through formulas
+\usepackage{hyperref} % should make index clickable
+\usepackage{bookmark} % Used for pdf bookmarks, needs to be loaded AFTER hyperref
+\usepackage{pgfplots} % Drawings!
+\usepackage{bm} % bold math, \bm{}
+\usepackage{listings} % to include code with env. lstlisting
+\usepackage{graphicx} % to use \includegraphics
+\usepackage{booktabs} % Better spacing for tables
+\usepackage{polynom} % Polynomial long division
+\usepackage{multirow} % Improvements to table layout
+
+
+\usepackage{marvosym} % Extra math symbols
+\usepackage{amsfonts} % An extended set of math fonts
+%\usepackage{fancyhdr} % Nicer page headers/footers. WARNING clashes with exam class!
+\usepackage{ulem} % Provides an \ul (underline) command which will break over line ends
+\usepackage{iflang}
+\usepackage[margin=8em]{geometry} % Adjust page margins
+\usepackage[default,osfigures]{opensans} % Open Sans typeface
+\usepackage{algorithm} % Algorithm environment
+\usepackage[noend]{algpseudocode} % Layout for algorithmicx package
+\usepackage{chngcntr} % Customise table/figure counters
+
+\makeindex
+
+% Document
+\begin{document}
+
+    Hello!
+    This is a new release $\lightning$. \index{lightning}
+
+    \input{chapter1}
+
+    They said~\cite{book1}.
+
+    \bibliography{books}
+    \bibliographystyle{plain}
+
+    \printindex
+
+\end{document}

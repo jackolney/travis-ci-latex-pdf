@@ -1,15 +1,49 @@
+notifications:
+  email: false
+
 before_install:
-- sudo apt-get update 
-- sudo apt-get install texlive-latex-extra
-script:
-- mkdir _build
-- pdflatex -output-directory _build ./tex/Hello.tex
+  # Install makeindex, if you do not use an index you can remove this (also remove the extra makeindex call).
+  - sudo apt-get install texlive-binaries
+
+install:
+  # Silent install from conda docs
+  # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
+  # adapted using
+  # https://conda.io/docs/user-guide/tasks/use-conda-with-travis-ci.html
+
+  # Needed to check if conda already installed
+  - export PATH="$HOME/miniconda/bin:$PATH"
+
+  # If not yet installed, obtain Miniconda
+  # and tectonic
+  # From tectonic docs
+  # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
+  - if ! command -v conda > /dev/null; then
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+      bash miniconda.sh -b -p $HOME/miniconda -u;
+      conda config --add channels conda-forge;
+      conda config --set always_yes yes;
+      conda update --all;
+      conda install tectonic;
+    fi
+  - conda info -a
+cache:
+  directories:
+    - $HOME/miniconda
+    - $HOME/.cache/Tectonic
+script: # Change working directory each time so including files will work. Change back so the pdfs can be found for deployment. This way, building multiple files goes well.
+ - cd ./src/
+ # Tectonic does not include makeindex, so that needs to be done manually.
+ - tectonic ./main.tex
+ - makeindex ./main.idx
+ - tectonic ./main.tex --print
+ - cd ../
 deploy:
   provider: releases
   api_key:
-    secure: qMdS+WTKOBwaY9ZYBLb9a9c7CYdhRl8M89nBDHO46V+qYJot7WALMfyP15A6jQKWnTIYvDC2KXHq0ku6Hg4qS4cT05gHQCeF0jpEjslJ6Nd7rT23K1o8/8skZLOA3k80Aybn27ofP9lSo9/cAYeSvH3x/iN3MNxWrTMTMd7hG6H5qAsuPqfs0obhZ+fXnoIvUveZIKAuwWe7iTKObhG9NCPyEFRjVmu3O/okDXGfzvRYyvq9zMqpA74l0BJ0q+pt5SvHsBL5LZ+euL/JI5xyELjVU8U7cbHcl2Ucp5k5cykz/7HgQVMseDuaJN/Ds63ucPzd6DZCYoprRZehWTZ49zSAR/TeVLI2zpQDtTzUxWPsi1jR2RXFCP9Cp/pRID/n7nfXj8WZRPGLja/L2H9bKuH+Rg/RNWT3mZHePNHwINGuRnU6o6PDyO4J56R/Y56+F4410JBSfQj3s/99JwqPXvZzUXnq31d5dPAjq1edwtwxfkuIbpMAvU0AyX9itcNtv5a1sWVD5RyUmflXK607IXj2hVjHtInCSyE4WrzmgZrGsKuq8O0mmHD1B+mBsvhAGm6rLB5cobVhhei+dkiFpo+8y2uNKpT54WA4AcUhNjuvbUuCBK9AxKJa2UrBkkOXKwptFXHxPnKbt7qv29WPG0odc1FgstqymybId0n2Tt0=
+    secure: GK0T9i6YKZlKmxurW4B8lkBGCfUcehODrWA8VcuUaK4CgSYaVj2BzMJj4E7pA3Ucm76bGR9l1yWYA+RHRwg0033A8Tw54hIinAcwiuXCpRwgcVkbbxK77o8Q4g0ooRPAMePtkQrjeq1JgHN2sZUZ2CixhtCDApM8H4yaQW7bb7TmBFut/9YEfiJVBCAE0ZNjbjXSbYADRc9Zh1fy/53xJzgKC57dQnFDrnEsGlwRkrv5lQK+3Dw7ktd48pQe8C3c2LNZn052gaR0TxxzDBAyvG4nmeA17wYMvZk7UhfKYVdqUjNqwyjktvWQQDOAtWL7OrlBNfWyf5bEn1RsfsnZ7lX/3uTj1z2fQeaYcx29goSo6y7cemz+UFsuoG3ggMuD1V81xkLI82WglYnbDEd7wij5kj1+/YAliiiZtO98kLUXbyPKWq0ycmPjj1PKyiX1Gk4LMtPfvDEIdhm/uShCY+6PrOxnGPAEd+gKgA8kAdhkuZ1/IZjkbz0dQpoZgJse7V71x+cop8fvHsuFUcj/irk4qzfVkfhnKuNpMtq2z6HDvQ/GDkZKUTkNaok8rWGFGhE8TiXCoaEoWUASEQcqouQY8KHjqQT6JVgKLwsoPuA34Pb5Fb6tbFzrNT5QE7GTeoVa9GPXJ3IrKepdcRAo3I8GVEyH0rWItdWBH0tU7fo=
   file:
-  - ./_build/Hello.pdf
+  - ./src/main.pdf
   skip_cleanup: true
   on:
     tags: true
